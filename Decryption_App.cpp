@@ -10,9 +10,9 @@ using namespace TgBot;
 //Path
 string pathIn = "C:\\Users\\Max\\source\\repos\\DecriptionApp\\";
 
-//Bot text
+//Introduction
 string start_text = "Hi, I'm a bot which can embed or extract messages to/from photos, I use the Quantization Index Modulation (QMI) method for this action. Choose, what do you want to do?";
-// Embed
+// Embedding
 string ask_quantization_embed = "Great, enter the quantization step for embed.";
 string ask_photo_embed = "Great, send photo which you want to embed your text.";
 string ask_open_text = "Great, enter open text for embed.";
@@ -103,7 +103,7 @@ int main() {
     });
 
 
-    //Bot start 
+    //Launching the bot
     signal(SIGINT, [](int s) {
         printf("SIGINT got\n");
         exit(0);
@@ -127,13 +127,13 @@ int main() {
     return 0;
 }
 
-//Bot Functions
+//Bot call function
 void start_bot(Message::Ptr message, Bot& bot, InlineKeyboardMarkup::Ptr keyboard) {
     bot.getApi().sendMessage(message->chat->id, "Hi, I'm a bot that can embed or extract messages from photos using the Quantization Index Modulation (QMI) method. Choose, what you want to do?", false, 0, keyboard);
 }
 std::vector<BotCommand::Ptr> create_commands() {
     vector<BotCommand::Ptr> commands;
-    //Start
+    //Enabling
     BotCommand::Ptr cmdArray1(new BotCommand);
     BotCommand::Ptr cmdArray2(new BotCommand);
     cmdArray2->command = "start";
@@ -147,6 +147,8 @@ std::vector<BotCommand::Ptr> create_commands() {
 
     return commands;
 }
+
+//Restarting the bot for verification   
 void rerun(Bot& bot) {
     if (prev_callback_ptr) {
         bot.getApi().deleteMessage(prev_callback_ptr->message->chat->id, prev_callback_ptr->message->messageId);
@@ -170,7 +172,7 @@ void any_message_handler(Message::Ptr message, CallbackQuery::Ptr query, Bot& bo
 
     if (StringTools::startsWith(query->data, "embed")) {
         cout << "embed" << endl;
-        //Photo
+        //Entering a photo from the user
         if (message->replyToMessage && ask_photo_embed == message->replyToMessage->text && (*ans_photo).empty() && (message->document || message->photo.size() > 0)) {
             prev_person_message = message;
             string save_img_res = embed_handler_photo(message, bot);
@@ -186,7 +188,7 @@ void any_message_handler(Message::Ptr message, CallbackQuery::Ptr query, Bot& bo
                 bot.getApi().sendMessage(query->message->chat->id, "Image is incorrect, please try again!");
             }
         }
-        //Message
+        //Entering a message from the user
         if (message->replyToMessage && ask_open_text == message->replyToMessage->text && (*ans_open_text).empty()) {
             prev_person_message = message;
             *ans_open_text = message->text;
@@ -200,6 +202,7 @@ void any_message_handler(Message::Ptr message, CallbackQuery::Ptr query, Bot& bo
         if (message->replyToMessage && ask_quantization_embed == message->replyToMessage->text && !*ans_quantization) {
             prev_person_message = message;
             *ans_quantization = atoi(&(message->text)[0]);
+            //If all checks are passed
             Message::Ptr message_prev = bot.getApi().sendMessage(query->message->chat->id, "Great! Now I am embedding your text in photo...", false, 0, cancel_btn);
             bot.getApi().deleteMessage(prev_person_message->chat->id, prev_person_message->messageId);
             bot.getApi().deleteMessage(prev_bot_message->chat->id, prev_bot_message->messageId);
