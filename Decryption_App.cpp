@@ -42,7 +42,7 @@ int main() {
     setlocale(LC_ALL, "Russian");
     
     //Init bot
-    string token("6124064658:AAHzxN0DzEAXwrmtt34GsDNxQic4IR-eIE0");
+    string token("TOKEN HERE");
     printf("Token: %s\n", token.c_str());
     Bot bot(token);
     bot.getApi().setMyCommands(create_commands());
