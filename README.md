@@ -22,7 +22,7 @@ vcpkg install tgbot-cpp opencv
 Для компиляции проекта рекомендуем установить компилятор [MSVC](https://visualstudio.microsoft.com/ru/vs/features/cplusplus/):
 
 ## Использование
-Для запуска бота необходимо указать его токен в файле [фйле](https://github.com/mmmaxonchik/Decryption_bot/blob/main/Decryption_App.cpp), а затем запустить скомпилированный бинарный файл.
+Для запуска бота необходимо указать его токен в файле [фйле](https://github.com/mmmaxonchik/Decryption_bot/blob/main/Decryption_App.cpp#L45), а затем запустить скомпилированный бинарный файл.
 
 Бот имеет следующие команды:
 - /start
