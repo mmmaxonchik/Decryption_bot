@@ -13,7 +13,7 @@
 ## Установка
 Для работы с проектом необходимо иметь установленный менеджер пакетов vcpkg. Если он у вас еще не установлен, вы можете сделать это, следуя инструкциям на сайте https://github.com/microsoft/vcpkg.
 
-Для установки использующихся библиотек tgbot-cpp и OpenCV можно воспользоваться следующими командами:
+Для установки использующихся библиотек [tgbot-cpp](https://github.com/reo7sp/tgbot-cpp.git) и [OpenCV](https://opencv.org/) можно воспользоваться следующими командами:
 ```
 vcpkg install tgbot-cpp opencv
 ```
@@ -27,6 +27,7 @@ vcpkg install tgbot-cpp opencv
 Бот имеет следующие команды:
 - /start
 - /rerun
+
 И втроенные кнопки:
 - embed
 - extract
