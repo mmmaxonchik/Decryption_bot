@@ -251,7 +251,7 @@ void any_message_handler(Message::Ptr message, CallbackQuery::Ptr query, Bot& bo
             }
         }
 
-        //Quantization
+        //Embedding method Quantization
         if (message->replyToMessage && ask_quantization_extract == message->replyToMessage->text && !*ans_quantization) {
             prev_person_message = message;
             *ans_quantization = atoi(&message->text[0]);
